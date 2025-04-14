@@ -30,6 +30,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.docscanner.Screen.HomeScreen
 import com.example.docscanner.Screen.LoginPage
+import com.example.docscanner.Screen.forgotPassword
 import com.example.docscanner.Screen.signUp
 import com.example.docscanner.ui.theme.DocScannerTheme
 import com.example.docscanner.ui.theme.GoogleAuthClient
@@ -49,8 +50,6 @@ class MainActivity : androidx.activity.ComponentActivity() {
             val authViewModel = AuthViewModel(applicationContext)
             DocScannerTheme {
                 val isSignedIn = authViewModel.isSignedIn()
-
-
                 NavHost(navController = navController, startDestination = if(isSignedIn) HomeScreen else SignIn) {
                     composable<SignIn> {
                         LoginPage(navController = navController, authViewModel = authViewModel)
@@ -59,7 +58,10 @@ class MainActivity : androidx.activity.ComponentActivity() {
                         signUp(authViewModel = authViewModel, navController = navController)
                     }
                     composable<HomeScreen> {
-                        HomeScreen(authViewModel = authViewModel, navController)
+                        HomeScreen(authViewModel = authViewModel, navController, this@MainActivity)
+                    }
+                    composable<ForgotPassword> {
+                        forgotPassword(authViewModel = authViewModel)
                     }
                 }
             }
@@ -75,4 +77,7 @@ object SignIn
 
 @Serializable
 object HomeScreen
+
+@Serializable
+object ForgotPassword
 
