@@ -101,7 +101,7 @@ class GoogleAuthClient(
                 GetGoogleIdOption.Builder()
                     .setFilterByAuthorizedAccounts(false)
                     .setServerClientId(
-                        serverClientId = CLIENT_SERVER_ID
+                        serverClientId = "27180209062-3kob89fl90o2sei2noshnfmoh8eo1giu.apps.googleusercontent.com"
                     )
                     .setAutoSelectEnabled(false)
                     .build()
@@ -138,5 +138,19 @@ class GoogleAuthClient(
             Toast.makeText(context, "something went wrong", Toast.LENGTH_SHORT).show()
             return false
         }
+    }
+
+    suspend fun resetPassword(email: String){
+
+            val result = firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener { task->
+                    if(task.isSuccessful){
+                        Toast.makeText(context, "Email Sent", Toast.LENGTH_LONG).show()
+                    }
+
+                    if(!task.isSuccessful){
+                        Toast.makeText(context, "Wrong Email Field", Toast.LENGTH_LONG).show()
+                    }
+                }
     }
 }

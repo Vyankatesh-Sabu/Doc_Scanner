@@ -5,6 +5,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.docscanner.AuthViewModel
+import com.example.docscanner.ForgotPassword
 import com.example.docscanner.R
 import com.example.docscanner.SignUp
 import com.example.docscanner.HomeScreen
@@ -75,15 +78,16 @@ fun LoginPage(navController : NavController, authViewModel: AuthViewModel){
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(rememberScrollState())
+            .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
 
         Image(painterResource(R.drawable.sign_in), "login image")
-        Text("Welcome", fontSize = 28.sp, fontWeight = FontWeight.Bold)
-        Text("Login to your Account")
+        Text("Welcome", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onBackground)
+        Text("Login to your Account", color = MaterialTheme.colorScheme.onBackground)
         Spacer(Modifier.height(8.dp))
         OutlinedTextField(value = email, onValueChange = { email = it }, label = {
             Text("Email address")
@@ -125,12 +129,12 @@ fun LoginPage(navController : NavController, authViewModel: AuthViewModel){
         Spacer(Modifier.height(16.dp))
         Row {
             Text("Forgot Password", modifier = Modifier.clickable {
-
-            },)
+                navController.navigate(ForgotPassword)
+            }, color = MaterialTheme.colorScheme.onBackground)
             Spacer(modifier = Modifier.width(150.dp))
             Text("Sign Up", Modifier.clickable {
                 navController.navigate(SignUp)
-            })
+            }, color = MaterialTheme.colorScheme.onBackground)
         }
         Spacer(Modifier.height(8.dp))
             Text("or sign in with")

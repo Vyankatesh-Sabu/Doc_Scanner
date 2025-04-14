@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -63,9 +64,9 @@ fun signUp(authViewModel: AuthViewModel,navController: NavController) {
 
         Image(painterResource(R.drawable.sign_up), "sign up image", modifier = Modifier.size(300.dp,300.dp))
 
-        Text("Welcome", fontSize = 28.sp, fontWeight = FontWeight.Bold)
+        Text("Welcome", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onBackground)
 
-        Text("Login to your Account")
+        Text("Login to your Account", color = MaterialTheme.colorScheme.onBackground)
 
         Spacer(Modifier.height(8.dp))
 
@@ -107,13 +108,13 @@ fun signUp(authViewModel: AuthViewModel,navController: NavController) {
                 containerColor = Color(0xFF1E3A8A)
             )
         ) {
-            Text("Login")
+            Text("Login", color = MaterialTheme.colorScheme.onPrimary)
         }
 
 
         Spacer(Modifier.height(8.dp))
 
-        Text("or sign in with")
+        Text("or sign in with", color = MaterialTheme.colorScheme.onBackground)
 
         Spacer(Modifier.height(8.dp))
 
