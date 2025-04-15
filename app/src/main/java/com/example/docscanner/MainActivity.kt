@@ -44,7 +44,6 @@ class MainActivity : androidx.activity.ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         setContent {
             val navController = rememberNavController()
             val authViewModel = AuthViewModel(applicationContext)
