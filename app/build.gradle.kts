@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,8 +7,6 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
 }
-
-val clientServerId = project.findProperty("CLIENT_SERVER_ID") as? String ?: "YOUR_CLIENT_SERVER_ID"
 
 android {
     namespace = "com.example.docscanner"
@@ -21,7 +21,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "CLIENT_SERVER_ID", "\"${clientServerId}\"")
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        buildConfigField("String", "FIREBASE_CLIENT_SERVER_ID", " \"${properties.getProperty("CLIENT_SERVER_ID")}\"")
     }
 
     buildTypes {
@@ -96,4 +99,11 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:$nav_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
+    //ML KIT
+    implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
 }
