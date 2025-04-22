@@ -1,8 +1,5 @@
 package com.example.docscanner.Screen
 
-import android.app.Activity
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,7 +17,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -36,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -51,11 +46,6 @@ import com.example.docscanner.R
 import com.example.docscanner.SignUp
 import com.example.docscanner.HomeScreen
 import com.example.docscanner.SignIn
-import com.example.docscanner.ui.theme.GoogleAuthClient
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
 @Composable
 fun LoginPage(navController : NavController, authViewModel: AuthViewModel){
@@ -128,7 +118,7 @@ fun LoginPage(navController : NavController, authViewModel: AuthViewModel){
         }
         Spacer(Modifier.height(16.dp))
         Row {
-            Text("Forgot Password", modifier = Modifier.clickable {
+            Text("Forgot Password ?", modifier = Modifier.clickable {
                 navController.navigate(ForgotPassword)
             }, color = MaterialTheme.colorScheme.onBackground)
             Spacer(modifier = Modifier.width(150.dp))

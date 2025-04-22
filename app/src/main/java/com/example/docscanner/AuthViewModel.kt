@@ -2,20 +2,16 @@ package com.example.docscanner
 
 import android.app.Activity
 import android.content.Context
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.core.os.registerForAllProfilingResults
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.docscanner.ui.theme.GoogleAuthClient
+import com.example.docscanner.Clients.GoogleAuthClient
+import com.example.docscanner.Clients.SupabaseDbClient
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class AuthViewModel(applicationContext : Context) : ViewModel() {
 
@@ -32,7 +28,6 @@ class AuthViewModel(applicationContext : Context) : ViewModel() {
         viewModelScope.launch((Dispatchers.Main))
         {
             _isSignedIn.value = googleAuthClient.registerEmail(email, password)
-
         }
     }
 
